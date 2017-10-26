@@ -25,7 +25,7 @@ public class SmartLinkedList<T> : ICollection<T>
     public bool IsReadOnly => false;
     private int version;
 
-    private readonly SmartLinkedList<LinkNode<T>> _nodePool = new SmartLinkedList<LinkNode<T>>();
+    private readonly Queue<LinkNode<T>> _nodePool = new Queue<LinkNode<T>>(10);
     
     public void AddFirst(T item)
     {
