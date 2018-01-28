@@ -1,34 +1,35 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 
-public class SmartEvent<T>
+namespace Unitilities
 {
-    private readonly SmartLinkedList<Action<T>> _actions = new SmartLinkedList<Action<T>>();
-
-    public int Count => _actions.Count;
-
-    public void Invoke(T t)
+    public class SmartEvent<T>
     {
-        foreach (var action in _actions)
-            action(t);
-    }
+        private readonly SmartLinkedList<Action<T>> _actions = new SmartLinkedList<Action<T>>();
 
-    public void Add(Action<T> action) => _actions.AddLast(action);
+        public int Count => _actions.Count;
 
-    public void Remove(Action<T> action) => _actions.Remove(action);
+        public void Invoke(T t)
+        {
+            foreach (var action in _actions)
+                action(t);
+        }
 
-    public void Clear() => _actions.Clear();
+        public void Add(Action<T> action) => _actions.AddLast(action);
 
-    public static SmartEvent<T> operator +(SmartEvent<T> smartEvent, Action<T> action)
-    {
-        smartEvent._actions.AddLast(action);
-        return smartEvent;
-    }
+        public void Remove(Action<T> action) => _actions.Remove(action);
 
-    public static SmartEvent<T> operator -(SmartEvent<T> smartEvent, Action<T> action)
-    {
-        smartEvent._actions.Remove(action);
-        return smartEvent;
+        public void Clear() => _actions.Clear();
+
+        public static SmartEvent<T> operator +(SmartEvent<T> smartEvent, Action<T> action)
+        {
+            smartEvent._actions.AddLast(action);
+            return smartEvent;
+        }
+
+        public static SmartEvent<T> operator -(SmartEvent<T> smartEvent, Action<T> action)
+        {
+            smartEvent._actions.Remove(action);
+            return smartEvent;
+        }
     }
 }

@@ -1,5 +1,10 @@
 # CSharp-Unity-Utils
 
+GameObjectPool.cs
+-----------------
+
+Simple Static GameObject Pool that can be prewarmed, and lazily expanded.
+
 ObjectPool.cs
 -------------
 
@@ -19,3 +24,14 @@ SmartEvent.cs
 -------------
 
 A replacement for C# events which are backed by a native LinkedList, which generates garbage. This utilizes the SmartLinkedList to prevent GC. Supports '+=' and '-=' syntax naively.
+
+ReactiveValue.cs
+----------------
+
+Generic Observable Wrapper that allows for `Subscribe` and Predicate filtered `Select` Actions on Value updates. Very useful for binding to UI changes.
+
+
+EnumMap.cs
+----------
+
+Extension of Dictionary that prevents boxing Enum keys, and saves GC.
